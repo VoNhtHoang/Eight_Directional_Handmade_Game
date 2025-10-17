@@ -9,7 +9,263 @@
 /compress:False
 
 #-------------------------------- References --------------------------------#
+/reference:MonoGame.Extended.Content.Pipeline.dll
 
 
 #---------------------------------- Content ---------------------------------#
+
+#begin character/16x16 Idle-Sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:character/16x16 Idle-Sheet.png
+
+#begin character/16x16 Idle.aseprite
+/importer:
+/processor:
+/build:character/16x16 Idle.aseprite
+
+#begin character/16x16 Run Cycle-Sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:character/16x16 Run Cycle-Sheet.png
+
+#begin character/16x16 Run Cycle.aseprite
+/importer:
+/processor:
+/build:character/16x16 Run Cycle.aseprite
+
+#begin character/16x16 Walk Cycle-Sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:character/16x16 Walk Cycle-Sheet.png
+
+#begin character/16x16 Walk Cycle.aseprite
+/importer:
+/processor:
+/build:character/16x16 Walk Cycle.aseprite
+
+#begin character/16x32 Idle-Sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:character/16x32 Idle-Sheet.png
+
+#begin character/16x32 Idle.aseprite
+/importer:
+/processor:
+/build:character/16x32 Idle.aseprite
+
+#begin character/16x32 Run Cycle-Sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:character/16x32 Run Cycle-Sheet.png
+
+#begin character/16x32 Run Cycle.aseprite
+/importer:
+/processor:
+/build:character/16x32 Run Cycle.aseprite
+
+#begin character/16x32 Walk Cycle-Sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:character/16x32 Walk Cycle-Sheet.png
+
+#begin character/16x32 Walk Cycle.aseprite
+/importer:
+/processor:
+/build:character/16x32 Walk Cycle.aseprite
+
+#begin character/Radial - 16x16 Run.aseprite
+/importer:
+/processor:
+/build:character/Radial - 16x16 Run.aseprite
+
+#begin character/Radial - 16x16 Walk.aseprite
+/importer:
+/processor:
+/build:character/Radial - 16x16 Walk.aseprite
+
+#begin character/Radial - 16x32 Run.aseprite
+/importer:
+/processor:
+/build:character/Radial - 16x32 Run.aseprite
+
+#begin character/Radial - 16x32 Walk.aseprite
+/importer:
+/processor:
+/build:character/Radial - 16x32 Walk.aseprite
+
+#begin character/Radial - Idle - Copy.aseprite
+/importer:
+/processor:
+/build:character/Radial - Idle - Copy.aseprite
+
+#begin character/Radial - Idle.aseprite
+/importer:
+/processor:
+/build:character/Radial - Idle.aseprite
+
+#begin character/Radial-Sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:character/Radial-Sheet.png
+
+#begin character/Radial.aseprite
+/importer:
+/processor:
+/build:character/Radial.aseprite
+
+#begin character/Spin-Sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:character/Spin-Sheet.png
+
+#begin character/Spin.aseprite
+/importer:
+/processor:
+/build:character/Spin.aseprite
+
+#begin map/map.tmx
+/importer:
+/processor:
+/build:map/map.tmx
+
+#begin res/hyptosis_sprites-and-tiles-for-you.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:res/hyptosis_sprites-and-tiles-for-you.png
+
+#begin res/knight.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:res/knight.png
+
+#begin res/tile1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:res/tile1.png
+
+#begin res/tile2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:res/tile2.png
+
+#begin res/tile3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:res/tile3.png
+
+#begin res/tile4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:res/tile4.png
+
+#begin res/tile5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:res/tile5.png
 

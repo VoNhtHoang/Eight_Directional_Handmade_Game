@@ -1,0 +1,75 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "map.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 329,
+                "y": 504
+            }
+        },
+        "sprite.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile3.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile4.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile5.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/hoang/Code/Handmade_Game/C#(MonoGame)/Knight/Content/res",
+    "map.height": 200,
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": "2",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 200,
+    "openFiles": [
+        "tile1.tsx",
+        "tile2.tsx",
+        "map.tmx",
+        "tile3.tsx",
+        "tile4.tsx",
+        "tile5.tsx"
+    ],
+    "project": "KnightMap.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "tile1.tsx",
+        "tile2.tsx",
+        "tile5.tsx",
+        "tile4.tsx",
+        "tile3.tsx",
+        "map.tmx",
+        "sprite.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
