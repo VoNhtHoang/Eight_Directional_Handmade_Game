@@ -2,57 +2,11 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "Autofac/5.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.1/Autofac.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/Autofac.dll": {
-            "related": ".pdb;.xml"
-          }
-        }
-      },
       "MonoGame.Content.Builder.Task/3.8.4": {
         "type": "package",
         "build": {
           "build/MonoGame.Content.Builder.Task.props": {},
           "build/MonoGame.Content.Builder.Task.targets": {}
-        }
-      },
-      "MonoGame.Extended/5.1.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/MonoGame.Extended.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/MonoGame.Extended.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "MonoGame.Extended.Content.Pipeline/5.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Autofac": "5.2.0",
-          "MonoGame.Extended": "5.1.0"
-        },
-        "compile": {
-          "lib/net8.0/MonoGame.Extended.Content.Pipeline.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/MonoGame.Extended.Content.Pipeline.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "build/MonoGame.Extended.Content.Pipeline.targets": {}
         }
       },
       "MonoGame.Framework.DesktopGL/3.8.4": {
@@ -155,6 +109,38 @@
           }
         }
       },
+      "Serilog/4.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Serilog.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Serilog.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/Serilog.targets": {}
+        }
+      },
+      "Serilog.Sinks.File/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "4.2.0"
+        },
+        "compile": {
+          "lib/net8.0/Serilog.Sinks.File.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Serilog.Sinks.File.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Memory/4.5.3": {
         "type": "package",
         "compile": {
@@ -176,27 +162,6 @@
     }
   },
   "libraries": {
-    "Autofac/5.2.0": {
-      "sha512": "V8dBH0dsv75uDzl7Sw+HkhKDPUw2eXnlMjcSVMH+tLo2s67MpTKGyDj1pDcpR+IF2u4YRs0s3/x7R88YJzIWvg==",
-      "type": "package",
-      "path": "autofac/5.2.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "autofac.5.2.0.nupkg.sha512",
-        "autofac.nuspec",
-        "icon.png",
-        "lib/net461/Autofac.dll",
-        "lib/net461/Autofac.pdb",
-        "lib/net461/Autofac.xml",
-        "lib/netstandard2.0/Autofac.dll",
-        "lib/netstandard2.0/Autofac.pdb",
-        "lib/netstandard2.0/Autofac.xml",
-        "lib/netstandard2.1/Autofac.dll",
-        "lib/netstandard2.1/Autofac.pdb",
-        "lib/netstandard2.1/Autofac.xml"
-      ]
-    },
     "MonoGame.Content.Builder.Task/3.8.4": {
       "sha512": "Oc/tp6liQ34BkBCrdQO23JDf1Z8r11kKeL9oXSlEfUiRSQYs7C0TYaKIjhfYGjSRaV7JaFIisLDToWpnf7ztKg==",
       "type": "package",
@@ -207,42 +172,68 @@
         "Icon.png",
         "build/MonoGame.Content.Builder.Task.props",
         "build/MonoGame.Content.Builder.Task.targets",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/.nupkg.metadata",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/.signature.p7s",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/Icon.png",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/dotnet-mgcb.3.8.4.nupkg",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/dotnet-mgcb.3.8.4.nupkg.sha512",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/dotnet-mgcb.nupkg",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/dotnet-mgcb.nuspec",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/AssimpNetter.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/BCnEncoder.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/CppNet.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/DotnetToolSettings.xml",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/KtxSharp.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/Microsoft.Toolkit.HighPerformance.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Framework.Content.Pipeline.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Framework.Content.Pipeline.pdb",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Framework.Content.Pipeline.xml",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Framework.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Framework.pdb",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Framework.xml",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Tool.Basisu.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Tool.Crunch.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Tool.FFmpeg.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/MonoGame.Tool.FFprobe.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/SharpDX.D3DCompiler.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/SharpDX.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/libmojoshader_64.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/linux-x64/basisu",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/linux-x64/crunch",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/linux-x64/ffmpeg",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/linux-x64/ffprobe",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/mgcb.deps.json",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/mgcb.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/mgcb.pdb",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/mgcb.runtimeconfig.json",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/mgfxc",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/mgfxc.deps.json",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/mgfxc.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/mgfxc.runtimeconfig.json",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/osx/basisu",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/osx/crunch",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/osx/ffmpeg",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/osx/ffprobe",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/linux-arm64/native/libassimp.so",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/linux-x64/native/libassimp.so",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/linux-x64/native/libfreeimage.so",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/linux-x64/native/libfreetype.so",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/osx-arm64/native/libassimp.dylib",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/osx-x64/native/libassimp.dylib",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/osx/native/libfreeimage.dylib",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/osx/native/libfreetype.dylib",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/win-x64/native/FreeImage.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/win-x64/native/assimp.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/win-x64/native/freetype.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/runtimes/win-x86/native/assimp.dll",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/windows-x64/basisu.exe",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/windows-x64/crunch.exe",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/windows-x64/ffmpeg.exe",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/dotnet-mgcb/3.8.4/tools/net8.0/any/windows-x64/ffprobe.exe",
+        "build/dotnet-tools/.store/dotnet-mgcb/3.8.4/project.assets.json",
+        "build/dotnet-tools/mgcb.exe",
         "monogame.content.builder.task.3.8.4.nupkg.sha512",
         "monogame.content.builder.task.nuspec"
-      ]
-    },
-    "MonoGame.Extended/5.1.0": {
-      "sha512": "SKFNdTUYE/0hjfuCxQoFbsmyb2GDJmVXXtoKjov23PBySvWMGVTikMKpWDlCu63bhq/fcUMYS69u+SpZOfLv8Q==",
-      "type": "package",
-      "path": "monogame.extended/5.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/net8.0/MonoGame.Extended.dll",
-        "lib/net8.0/MonoGame.Extended.xml",
-        "logo-nuget-128.png",
-        "monogame.extended.5.1.0.nupkg.sha512",
-        "monogame.extended.nuspec"
-      ]
-    },
-    "MonoGame.Extended.Content.Pipeline/5.1.0": {
-      "sha512": "OLUyCrhH/6b0JZHeW2c1xfQ7jAZ8Ea8vUQKJX5KzjULvy5dWrMt9o6ssBjzU9fKSA1xMsBnepU90D7SkI7JoFg==",
-      "type": "package",
-      "path": "monogame.extended.content.pipeline/5.1.0",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "build/MonoGame.Extended.Content.Pipeline.targets",
-        "lib/net8.0/MonoGame.Extended.Content.Pipeline.dll",
-        "lib/net8.0/MonoGame.Extended.Content.Pipeline.xml",
-        "logo-nuget-128.png",
-        "monogame.extended.content.pipeline.5.1.0.nupkg.sha512",
-        "monogame.extended.content.pipeline.nuspec",
-        "tools/MonoGame.Extended.Content.Pipeline.dll",
-        "tools/MonoGame.Extended.dll"
       ]
     },
     "MonoGame.Framework.DesktopGL/3.8.4": {
@@ -318,6 +309,57 @@
         "nvorbis.nuspec"
       ]
     },
+    "Serilog/4.3.0": {
+      "sha512": "+cDryFR0GRhsGOnZSKwaDzRRl4MupvJ42FhCE4zhQRVanX0Jpg6WuCBk59OVhVDPmab1bB+nRykAnykYELA9qQ==",
+      "type": "package",
+      "path": "serilog/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/Serilog.targets",
+        "icon.png",
+        "lib/net462/Serilog.dll",
+        "lib/net462/Serilog.xml",
+        "lib/net471/Serilog.dll",
+        "lib/net471/Serilog.xml",
+        "lib/net6.0/Serilog.dll",
+        "lib/net6.0/Serilog.xml",
+        "lib/net8.0/Serilog.dll",
+        "lib/net8.0/Serilog.xml",
+        "lib/net9.0/Serilog.dll",
+        "lib/net9.0/Serilog.xml",
+        "lib/netstandard2.0/Serilog.dll",
+        "lib/netstandard2.0/Serilog.xml",
+        "serilog.4.3.0.nupkg.sha512",
+        "serilog.nuspec"
+      ]
+    },
+    "Serilog.Sinks.File/7.0.0": {
+      "sha512": "fKL7mXv7qaiNBUC71ssvn/dU0k9t0o45+qm2XgKAlSt19xF+ijjxyA3R6HmCgfKEKwfcfkwWjayuQtRueZFkYw==",
+      "type": "package",
+      "path": "serilog.sinks.file/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/Serilog.Sinks.File.dll",
+        "lib/net462/Serilog.Sinks.File.xml",
+        "lib/net471/Serilog.Sinks.File.dll",
+        "lib/net471/Serilog.Sinks.File.xml",
+        "lib/net6.0/Serilog.Sinks.File.dll",
+        "lib/net6.0/Serilog.Sinks.File.xml",
+        "lib/net8.0/Serilog.Sinks.File.dll",
+        "lib/net8.0/Serilog.Sinks.File.xml",
+        "lib/net9.0/Serilog.Sinks.File.dll",
+        "lib/net9.0/Serilog.Sinks.File.xml",
+        "lib/netstandard2.0/Serilog.Sinks.File.dll",
+        "lib/netstandard2.0/Serilog.Sinks.File.xml",
+        "serilog-sink-nuget.png",
+        "serilog.sinks.file.7.0.0.nupkg.sha512",
+        "serilog.sinks.file.nuspec"
+      ]
+    },
     "System.Memory/4.5.3": {
       "sha512": "3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
       "type": "package",
@@ -387,9 +429,9 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "MonoGame.Content.Builder.Task >= 3.8.*",
-      "MonoGame.Extended >= 5.1.0",
-      "MonoGame.Extended.Content.Pipeline >= 5.1.0",
-      "MonoGame.Framework.DesktopGL >= 3.8.4"
+      "MonoGame.Framework.DesktopGL >= 3.8.*",
+      "Serilog >= 4.3.0",
+      "Serilog.Sinks.File >= 7.0.0"
     ]
   },
   "packageFolders": {
@@ -446,17 +488,17 @@
             "target": "Package",
             "version": "[3.8.*, )"
           },
-          "MonoGame.Extended": {
-            "target": "Package",
-            "version": "[5.1.0, )"
-          },
-          "MonoGame.Extended.Content.Pipeline": {
-            "target": "Package",
-            "version": "[5.1.0, )"
-          },
           "MonoGame.Framework.DesktopGL": {
             "target": "Package",
-            "version": "[3.8.4, )"
+            "version": "[3.8.*, )"
+          },
+          "Serilog": {
+            "target": "Package",
+            "version": "[4.3.0, )"
+          },
+          "Serilog.Sinks.File": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           }
         },
         "imports": [

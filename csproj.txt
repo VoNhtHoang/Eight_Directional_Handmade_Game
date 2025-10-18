@@ -1,0 +1,14 @@
+    <PackageReference Include="MonoGame.Extended" Version="v3.8.0.1641" />
+    <PackageReference Include="MonoGame.Extended.Content.Pipeline" Version="v3.8.0.1641" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="v3.8.0.1641" />
+    <!-- <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" /> -->
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    <PackageReference Include="MonoGame.Extended.Tiled" Version="3.8.0" />
+
+
+    /reference:C:\Users\hoang\.nuget\packages\monogame.extended.content.pipeline\5.1.0\lib\net8.0\MonoGame.Extended.Content.Pipeline.dll
+
+/reference:"C:/Users/hoang/.nuget/packages/monogame.extended.content.pipeline/5.1.0/lib/netstandard2.0/MonoGame.Extended.Content.Pipeline.dll"
+/reference:"C:/Users/hoang/.nuget/packages/monogame.extended/5.1.0/lib/netstandard2.0/MonoGame.Extended.dll"
+
+    /reference:C:\Users\hoang\.nuget\packages\monogame.extended.content.pipeline\5.1.0\lib\net8.0\MonoGame.Extended.Content.Pipeline.dll

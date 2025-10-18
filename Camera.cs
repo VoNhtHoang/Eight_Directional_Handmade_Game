@@ -29,27 +29,27 @@
 //     }
 // }
 
-using Microsoft.Xna.Framework;
-using MonoGame.Extended;
-using Microsoft.Xna.Framework.Graphics;
+// using Microsoft.Xna.Framework;
+// using MonoGame.Extended;
+// using Microsoft.Xna.Framework.Graphics;
 
 
-namespace Knight
-{
-    public class Camera2D
-    {
-        private OrthographicCamera _camera;
+// namespace Knight
+// {
+//     public class Camera2D
+//     {
+//         private OrthographicCamera _camera;
 
-        public Camera2D(GraphicsDevice device)
-        {
-            _camera = new OrthographicCamera(device);
-        }
+//         public Camera2D(GraphicsDevice device)
+//         {
+//             _camera = new OrthographicCamera(device);
+//         }
 
-        public void LookAt(Vector2 position)
-        {
-            _camera.LookAt(position);
-        }
+//         public void LookAt(Vector2 position)
+//         {
+//             _camera.LookAt(position);
+//         }
 
-        public Matrix GetViewMatrix() => _camera.GetViewMatrix();
-    }
-}
+//         public Matrix GetViewMatrix() => _camera.GetViewMatrix();
+//     }
+// }

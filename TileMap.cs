@@ -26,32 +26,32 @@
 //     }
 // }
 
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
-using MonoGame.Extended.Tiled;
-using MonoGame.Extended.Tiled.Renderers;
-using Microsoft.Xna.Framework;
+// using Microsoft.Xna.Framework.Graphics;
+// using Microsoft.Xna.Framework.Content;
+// using MonoGame.Extended.Tiled;
+// using MonoGame.Extended.Tiled.Renderers;
+// using Microsoft.Xna.Framework;
 
-namespace Knight
-{
-    public class TileMap
-    {
-        public TiledMap _map { get; private set;}
-        private TiledMapRenderer _renderer;
-        public Vector2 MapSize { get; private set; }
+// namespace Knight
+// {
+//     public class TileMap
+//     {
+//         public TiledMap _map { get; private set;}
+//         private TiledMapRenderer _renderer;
+//         public Vector2 MapSize { get; private set; }
 
-        public TileMap(ContentManager contentManager, GraphicsDevice graphicsDevice, string mapFile)
-        {
-            _map = contentManager.Load<TiledMap>(mapFile);
-            _renderer = new TiledMapRenderer(graphicsDevice, _map);
+//         public TileMap(ContentManager contentManager, GraphicsDevice graphicsDevice, string mapFile)
+//         {
+//             _map = contentManager.Load<TiledMap>(mapFile);
+//             _renderer = new TiledMapRenderer(graphicsDevice, _map);
 
-             MapSize = new Vector2(
-                _map.WidthInPixels,
-                _map.HeightInPixels
-            );
-        }
+//              MapSize = new Vector2(
+//                 _map.WidthInPixels,
+//                 _map.HeightInPixels
+//             );
+//         }
 
-        public void Update(GameTime gameTime) => _renderer.Update(gameTime);
-        public void Draw(Matrix viewMatrix) => _renderer.Draw(viewMatrix);
-    }
-}
+//         public void Update(GameTime gameTime) => _renderer.Update(gameTime);
+//         public void Draw(Matrix viewMatrix) => _renderer.Draw(viewMatrix);
+//     }
+// }

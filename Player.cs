@@ -1,122 +1,74 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Reflection.PortableExecutable;
-// using System.Numerics;
 // using System;
-// using System.Drawing;
-// using System.Numerics;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using Serilog;
+using System.IO;
+// using System.Collections.Specialized;
+// using System.ComponentModel;
+// using System.Reflection.PortableExecutable;
 
-namespace Knight {
+namespace Knight
+{
     public class Player
     {
-        private Texture2D _texture;
-        private Vector2 _position;
-        private float speed = 2.5f;
+        private List<Texture2D> _texture;
 
-        private double timer;
+        // private float speed = 2.5f;
+        // private double timer;
+        private string direction = "S";
+        private string[] directions = ["S", "SW", "SE", "W", "E", "NW", "NE", "N"];
 
-        private string direction;
-
-        private Dictionary<string, List<Rectangle>> playerFrames;
-
-        private bool attack, moving, idle;
-
+        private Dictionary <string, Rectangle[]> playerIdleFrames, playerWalkFrames, playerRunFrames;
+        // private bool attack, moving, idle;
+        private int frameNums;
         private float _speed = 120f;
         private int _frameWidth = 16;
         private int _frameHeight = 32;
         private int _frameIndex = 0;
         private double _timer = 0;
         private double _interval = 0.15;
-        public Vector2 Position => _position;
 
+        private Microsoft.Xna.Framework.Vector2 _position;
+        public Microsoft.Xna.Framework.Vector2 Position => _position;
 
-        public Player(Microsoft.Xna.Framework.Content.ContentManager content, Vector2 startPos)
+        public Player(ContentManager content, string[] spritesheetPaths, Microsoft.Xna.Framework.Vector2 _position)
         {
-            _texture = content.Load<Texture2D>("character/16x32 Idle-Sheet.png");
-            _position = startPos;
-
-            playerFrames = new Dictionary<string, List<Rectangle>>();
-
-            // North
-            InitFrames(_texture);
+            // _texture = content.Load<Texture2D>(spritesheetPath);
+            try
+            {
+                _texture = new List<Texture2D>();
+                foreach (string sheetPath in spritesheetPaths) _texture.Add(content.Load<Texture2D>(sheetPath));
+                this._position = _position;
+                InitFrames();
+                
+            } catch (Exception ex)
+            {
+                Log.Warning(" Log Warn : " + ex.Message + "\t" + ex.Data.ToString());
+            }
         }
 
-        public Player(Microsoft.Xna.Framework.Content.ContentManager content, Vector2 startPos, string playerSpriteSheetFile)
+        private void InitFrames()
         {
-            _texture = content.Load<Texture2D>(playerSpriteSheetFile);
-            _position = startPos;
+            int frameNums = (int)(_texture[0].Width / _frameWidth), frameDirections = (int)(_texture[0].Height / _frameHeight);
+            Log.Information("\t  FrameDirections: " + frameDirections.ToString());
+            // Player Idle Frames
+            for (int i = 0; i < frameDirections; i++)
+            {
+                Rectangle[] tmpRects = new Rectangle[4];
 
-            playerFrames = new Dictionary<string, List<Rectangle>>();
+                for (int j = 0; j < frameNums; j++) tmpRects[j] = new Rectangle(j * _frameWidth, _frameHeight * 1, _frameWidth, _frameHeight);
 
-            InitFrames(_texture);
+                playerIdleFrames.Add(directions[i], tmpRects);
+            }
+
+            Log.Information("Player Dict : " + playerIdleFrames.ToString() + "\t  FrameNums: " + frameNums.ToString());
         }
-
-        private void InitFrames(Texture2D _texture)
-        {
-            List<Rectangle> tmpFrames = new List<Rectangle>();
-            for (int j = 0; j < _texture.Width / 16; j++)
-                tmpFrames.Add(new Rectangle(j * 16, 4 * 32, 16, 32));
-
-            playerFrames.Add("N", tmpFrames);
-
-            // South
-            tmpFrames = new List<Rectangle>();
-            for (int j = 0; j < _texture.Width / 16; j++)
-                tmpFrames.Add(new Rectangle(j * 16, 0 * 32, 16, 32));
-            playerFrames.Add("S", tmpFrames);
-
-            // West <-
-            tmpFrames = new List<Rectangle>();
-            for (int j = 0; j < _texture.Width / 16; j++)
-                tmpFrames.Add(new Rectangle(j * 16, 2 * 32, 16, 32));
-            playerFrames.Add("W", tmpFrames);
-
-            // East ->
-            tmpFrames = new List<Rectangle>();
-            for (int j = 0; j < _texture.Width / 16; j++)
-            {
-                Rectangle tmpRect = new Rectangle(j * 16, 2 * 32, 16, 32);
-                tmpFrames.Add(tmpRect);
-            }
-            playerFrames.Add("W", tmpFrames);
-
-            // North West 
-            tmpFrames = new List<Rectangle>();
-            for (int j = 0; j < _texture.Width / 16; j++)
-            {
-                tmpFrames.Add(new Rectangle(j * 16, 3 * 32, 16, 32));
-            }
-            playerFrames.Add("NW", tmpFrames);
-
-            // North East
-            tmpFrames = new List<Rectangle>();
-            for (int j = 0; j < _texture.Width / 16; j++)
-            {
-                tmpFrames.Add(new Rectangle(j * 16, 3 * 32, 16, 32));
-            }
-            playerFrames.Add("NE", tmpFrames);
-
-            // South West
-            tmpFrames = new List<Rectangle>();
-            for (int j = 0; j < _texture.Width / 16; j++)
-            {
-                tmpFrames.Add(new Rectangle(j * 16, 1 * 32, 16, 32));
-            }
-            playerFrames.Add("SW", tmpFrames);
-
-            // South East
-            tmpFrames = new List<Rectangle>();
-            for (int j = 0; j < _texture.Width / 16; j++)
-            {
-                tmpFrames.Add(new Rectangle(j * 16, 1 * 32, 16, 32));
-            }
-            playerFrames.Add("SE", tmpFrames);
-        }
-
+        
         public void Update(GameTime gameTime)
         {
             KeyboardState ks = Keyboard.GetState();
@@ -167,10 +119,10 @@ namespace Knight {
                 _frameIndex = 0; // idle giữa 3 frame
             }
         }
-        
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, _position, playerFrames[direction][_frameIndex], Color.White);
+            spriteBatch.Draw(_texture[0], _position, playerIdleFrames[direction][_frameIndex], Color.White);
         }
     }
 }

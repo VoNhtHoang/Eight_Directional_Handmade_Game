@@ -1,3 +1,5 @@
 .env
 bin/
 DesktopGL
+*.aseprite
+log*
