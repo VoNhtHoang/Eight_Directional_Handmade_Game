@@ -37,7 +37,7 @@
 /processorParam:TextureFormat=Color
 /build:character/16x32 Run Cycle-Sheet.png
 
-#begin character/16x32 Walk Cycle-Sheet.png
+#begin character/16x32 Walk Cycle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,5 +47,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:character/16x32 Walk Cycle-Sheet.png
+/build:character/16x32 Walk Cycle.png
 

@@ -13,7 +13,7 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
 
     // Player
-    private string[] playerSheetPaths = ["character/16x32 Idle", "character/16x32 Run Cycle-Sheet", "character/16x32 Walk Cycle-Sheet"];
+    private string[] playerSheetPaths = ["character/16x32 Idle", "character/16x32 Walk Cycle", "character/16x32 Run Cycle-Sheet"];
     private Player _player;
 
     public Game1()

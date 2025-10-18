@@ -43,8 +43,6 @@ C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\refint\Knight.dll
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.pdb
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Idle.xnb
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Run Cycle-Sheet.xnb
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Walk Cycle-Sheet.xnb
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Knight.exe
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Knight.deps.json
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Knight.runtimeconfig.json
@@ -70,3 +68,5 @@ C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\runtim
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.csproj.Up2Date
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.genruntimeconfig.cache
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\ref\Knight.dll
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Walk Cycle.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Run Cycle-Sheet.xnb
