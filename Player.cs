@@ -41,10 +41,13 @@ namespace Knight
         public double _timer = 0;
         public double _interval = 0.15f;
 
+        // pos & veclo & collision
         public Microsoft.Xna.Framework.Vector2 _position;
         public Microsoft.Xna.Framework.Vector2 Position => _position;
-        public Microsoft.Xna.Framework.Vector2 Veclocity;
+        public Microsoft.Xna.Framework.Vector2 _veclocity;
+        public MonoGame.Extended.RectangleF Bounds => new MonoGame.Extended.RectangleF(_position.X, _position.Y + 24, _frameWidth, _frameHeight - 24);
 
+        // public CollisionManager _collisionManager { get; private set; }
         public Player(ContentManager content, string[] spritesheetPaths, Microsoft.Xna.Framework.Vector2 _position)
         {
             // _texture = content.Load<Texture2D>(spritesheetPath);
@@ -68,11 +71,17 @@ namespace Knight
                 _state.Enter(this);
 
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Log.Warning(" Log Warn : " + ex.Message + "\t" + ex.Data.ToString());
             }
         }
+
+        // public void setCollisionManager(CollisionManager _collisionManager)
+        // {
+        //     this._collisionManager = _collisionManager;
+        // }
 
         private void InitFrames()
         {
@@ -111,9 +120,9 @@ namespace Knight
             _state.Enter(this);
         }
         
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, TiledMapManager _map)
         {
-            _state.Update(this, gameTime);
+            _state.Update(this, gameTime, _map);
         }
 
         public void Draw(SpriteBatch spriteBatch)

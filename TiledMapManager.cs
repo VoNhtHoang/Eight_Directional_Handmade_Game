@@ -1,30 +1,3 @@
-// using Microsoft.Xna.Framework.Content;
-// using Microsoft.Xna.Framework.Graphics;
-// using MonoGame.Extended.Tiled;
-// using MonoGame.Extended.Tiled.Renderers;
-// using Microsoft.Xna.Framework;
-
-// namespace MyGame {
-//     public class TileMap {
-//         private TiledMap tiledMap;
-//         private TiledMapRenderer renderer;
-//         public Vector2 MapSize { get; private set; }
-
-//         public TileMap(ContentManager content, string mapFile) {
-//             tiledMap = content.Load<TiledMap>(mapFile);
-//             renderer = new TiledMapRenderer(content.ServiceProvider.GetService<GraphicsDevice>(), tiledMap);
-
-//             MapSize = new Vector2(
-//                 tiledMap.WidthInPixels,
-//                 tiledMap.HeightInPixels
-//             );
-//         }
-
-//         public void Draw(SpriteBatch spriteBatch) {
-//             renderer.Draw();
-//         }
-//     }
-// }
 
 // using Microsoft.Xna.Framework.Graphics;
 // using Microsoft.Xna.Framework.Content;
@@ -62,11 +35,15 @@ using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended;
 
 using Serilog;
 
 using System.Collections.Generic;
-using System.Drawing;
+using System;
+using MonoGame.Extended.Serialization.Json;
+
+// using System.Drawing;
 
 namespace Knight
 {
@@ -75,44 +52,104 @@ namespace Knight
         public MonoGame.Extended.Tiled.TiledMap _map { get; private set; }
         public TiledMapRenderer _renderer;
 
-        public List<RectangleF> collisionRects { get; private set; }
+        public List<MonoGame.Extended.RectangleF> _collisionRects { get; private set; }
+
+        public int _mapWidth { get; private set; }
+        public int _mapHeight { get; private set; }
         public TiledMapManager(ContentManager content, GraphicsDevice graphicsDevice, string mapPath)
         {
             _map = content.Load<TiledMap>(mapPath);
             _renderer = new TiledMapRenderer(graphicsDevice, _map);
+            // MapSize
+            _mapWidth = _map.WidthInPixels;
+            _mapHeight = _map.HeightInPixels;
+
+            // Collision
+            _collisionRects = new List<MonoGame.Extended.RectangleF>();
+            LoadCollisionLayer();
         }
 
         private void LoadCollisionLayer()
         {
-            var layer = _map.GetLayer<TiledMapObjectLayer>("obstacles");
-            if (layer == null) return;
+            var layer = _map.GetLayer<TiledMapObjectLayer>("Collisions");
+
+            if (layer == null) {
+                Log.Information("File Tiled Map Manager ---- Layer is NULL");
+                return; 
+            }
 
             foreach (var obj in layer.Objects)
             {
                 if (obj is TiledMapObject { IsVisible: true })
-                    collisionRects.Add(new RectangleF(obj.Position.X, obj.Position.Y, obj.Size.Width, obj.Size.Height));
+                    _collisionRects.Add(new MonoGame.Extended.RectangleF(obj.Position.X, obj.Position.Y, obj.Size.Width, obj.Size.Height));
             }
+            Log.Information("File Tiled Map Manager ---- collision Rects count"+ _collisionRects.Count.ToString());
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, Matrix? cameraTransform = null)
         {
-            _renderer.Draw();
-        }
+            for (int i = 0; i < _collisionRects.Count; i++)
+            {
+                MonoGame.Extended.RectangleF rect = _collisionRects[i];
+                var color = new Color(255, 0, 0, 100);
+                spriteBatch.DrawRectangle(rect, Color.Red * 1f);
+            }
+            // Log.Warning("Tiled Map Manager - Draw Rect! \t" + _collisionRects.Count.ToString());
 
+            // Zoom & Draw
+            if (cameraTransform.HasValue) 
+                _renderer.Draw(cameraTransform.Value);
+            else
+                _renderer.Draw();
+        }
         public void Update(GameTime gameTime)
         {
             _renderer.Update(gameTime);
+
         }
 
-        public bool CheckCollision(RectangleF rect)
+        void DrawRectangle(SpriteBatch spriteBatch, MonoGame.Extended.RectangleF rect, Color color)
         {
-            // foreach (var c in collisionRects)
-            // {
-            //     if (rect.Intersects(c))
-            //         return true;
-            // }
-            // return false;
+            // Texture2D pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+            // pixel.SetData(new[] { Color.White });
+            // spriteBatch.Draw(pixel, rect, color);
+
+            spriteBatch.DrawRectangle(rect, color);
+        }
+
+        public bool CheckCollision(MonoGame.Extended.RectangleF rect)
+        {
+            foreach (var c in _collisionRects)
+            {
+                if (rect.Intersects(c))
+                    return true;
+            }
             return false;
+        }
+
+        public Vector2 ResolveCollision(RectangleF playerRect, Vector2 velocity)
+        {
+            var nextRect = new RectangleF(playerRect.Position + velocity, playerRect.Size);
+
+            foreach (var rect in _collisionRects)
+            {
+                if (nextRect.Intersects(rect))
+                {   
+                    // Tách trục X
+                    var xRect = new RectangleF(playerRect.Position + new Vector2(velocity.X, 0), playerRect.Size);
+                    if (!xRect.Intersects(rect))
+                        velocity.Y = 0;
+                    else
+                        velocity.X = 0;
+
+                    // var futureRect = new MonoGame.Extended.RectangleF(playerRect.Position + new Vector2(velocity.X, 0), playerRect.Size);
+                    // if (!futureRect.Intersects(rect)) velocity.X = 0;
+                    // futureRect = new MonoGame.Extended.RectangleF(playerRect.Position + new Vector2(0, velocity.Y), playerRect.Size);
+                    // if (!futureRect.Intersects(rect)) velocity.Y = 0;
+                }
+            }
+
+            return velocity;
         }
 
     }

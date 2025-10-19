@@ -18,6 +18,10 @@ public class Game1 : Game
     private Player _player;
     private TiledMapManager _map;
 
+    private Camera _camera;
+
+    // private CollisionManager _collisionManager;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -44,8 +48,10 @@ public class Game1 : Game
 
             _player = new Player(Content, playerSheetPaths, new Vector2(100, 100));
 
+            _camera = new Camera(GraphicsDevice);
+
         }catch (Exception ex) {
-            Log.Information("Load Content Error: "+ ex.Message +"\t" + ex.Data.ToString());
+            Log.Information("File Game1! Load Content Error: "+ ex.Message +"\t" + ex.Data.ToString());
         }
     }
 
@@ -56,15 +62,16 @@ public class Game1 : Game
         try
         {
             _map.Update(gameTime);
-            _player.Update(gameTime);
-            base.Update(gameTime);
+            _player.Update(gameTime, _map);
 
+            _camera.Follow(_player.Bounds.Center, gameTime, _map._mapWidth, _map._mapHeight);
+
+            base.Update(gameTime);
         }
         catch (Exception ex)
         {
-            Log.Information("Update Error : " + ex.Message + "\t" + ex.Data.ToString());
+            Log.Information(    "File Game1! Update Error : " + ex.Message + "\t" + ex.Data.ToString());
         }
-        // TODO: Add your update logic here
     }
 
     protected override void Draw(GameTime gameTime)
@@ -74,9 +81,11 @@ public class Game1 : Game
         {
             GraphicsDevice.Clear(Color.White);
 
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            // _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            // Zoom + Draw
+            _spriteBatch.Begin(transformMatrix: _camera.Transform, samplerState: SamplerState.PointClamp);
             
-            _map.Draw(gameTime);
+            _map.Draw(_spriteBatch, gameTime, _camera.Transform);
             _player.Draw(_spriteBatch);
 
             _spriteBatch.End();
@@ -85,7 +94,7 @@ public class Game1 : Game
         } catch (Exception ex){
 
 
-            Log.Information("Draw Error : " + ex.Message +"\t" + ex.Data.ToString());
+            Log.Information("File Game 1! Draw Error : " + ex.Message +"\t" + ex.Data.ToString());
         }
         // TODO: Add your drawing code here
 

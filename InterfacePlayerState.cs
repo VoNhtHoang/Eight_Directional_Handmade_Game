@@ -14,7 +14,7 @@ namespace Knight
     public interface InterfacePlayerState
     {
         void Enter(Player player);
-        void Update(Player player, GameTime gameTime);
+        void Update(Player player, GameTime gameTime, TiledMapManager _map);
         void Exit(Player player);
     }
 
@@ -23,7 +23,7 @@ namespace Knight
         public void Enter(Player player) {
             player._playerState = Player.State.Idle;
             player._interval = 0.3f; // 15fps (tự nhiên, kiểu idle)
-            player.Veclocity = Microsoft.Xna.Framework.Vector2.Zero; 
+            player._veclocity = Microsoft.Xna.Framework.Vector2.Zero; 
         }
 
         private bool check_walking_state(KeyboardState ks)
@@ -34,15 +34,15 @@ namespace Knight
             return false;
         }
 
-        public void Update(Player player, GameTime gameTime)
+        public void Update(Player player, GameTime gameTime, TiledMapManager _map)
         {
             KeyboardState ks = Keyboard.GetState();
 
             if (check_walking_state(ks)) player.ChangeState(new PlayerWalkState());
 
-            // Microsoft.Xna.Framework.Vector2 move = Microsoft.Xna.Framework.Vector2.Zero;
-            // move.Normalize();
-            // player._position += move * player._speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // Microsoft.Xna.Framework.Vector2 player._veclocity = Microsoft.Xna.Framework.Vector2.Zero;
+            // player._veclocity.Normalize();
+            // player._position += player._veclocity * player._speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             player._timer += gameTime.ElapsedGameTime.TotalSeconds;
             if (player._timer > player._interval)
@@ -61,7 +61,7 @@ namespace Knight
             player._playerState = Player.State.Walk;
             player._interval = 0.2f;  
         }
-        public void Update(Player player, GameTime gameTime)
+        public void Update(Player player, GameTime gameTime, TiledMapManager _map)
         {
             KeyboardState ks = Keyboard.GetState();
             if (ks.GetPressedKeyCount() < 1)
@@ -70,40 +70,45 @@ namespace Knight
                 return;
             }
             // Log.Information("Key Down - - - - : " + ks.ToString());
-            Microsoft.Xna.Framework.Vector2 move = Microsoft.Xna.Framework.Vector2.Zero;
-            if (ks.IsKeyDown(Keys.W)) { move.Y -= 1; player.direction = "N"; }  // Up
-            if (ks.IsKeyDown(Keys.S)) { move.Y += 1; player.direction = "S"; }  // Down
-            if (ks.IsKeyDown(Keys.A)) { move.X -= 1; player.direction = "W"; }  // Left
-            if (ks.IsKeyDown(Keys.D)) { move.X += 1; player.direction = "E"; }  // Right
+            player._veclocity = Microsoft.Xna.Framework.Vector2.Zero;
+            if (ks.IsKeyDown(Keys.W)) { player._veclocity.Y -= 1; player.direction = "N"; }  // Up
+            if (ks.IsKeyDown(Keys.S)) { player._veclocity.Y += 1; player.direction = "S"; }  // Down
+            if (ks.IsKeyDown(Keys.A)) { player._veclocity.X -= 1; player.direction = "W"; }  // Left
+            if (ks.IsKeyDown(Keys.D)) { player._veclocity.X += 1; player.direction = "E"; }  // Right
             if (ks.IsKeyDown(Keys.W) && ks.IsKeyDown(Keys.A) && ks.GetPressedKeyCount() > 1)
             {
-                move.Y -= 1;
-                move.X -= 1;
+                player._veclocity.Y -= 0.72f;
+                player._veclocity.X -= 0.72f;
                 player.direction = "NW";
             }
             if (ks.IsKeyDown(Keys.W) && ks.IsKeyDown(Keys.D) && ks.GetPressedKeyCount() > 1)
             {
-                move.Y -= 1;
-                move.X += 1;
+                player._veclocity.Y -= 0.72f;
+                player._veclocity.X += 0.72f;
                 player.direction = "NE";
             }
             if (ks.IsKeyDown(Keys.S) && ks.IsKeyDown(Keys.A) && ks.GetPressedKeyCount() > 1)
             {
-                move.Y += 1;
-                move.X -= 1;
+                player._veclocity.Y += 0.72f;
+                player._veclocity.X -= 0.72f;
                 player.direction = "SW";
             }
             if (ks.IsKeyDown(Keys.S) && ks.IsKeyDown(Keys.D) && ks.GetPressedKeyCount() > 1)
             {
-                move.Y += 1;
-                move.X += 1;
+                player._veclocity.Y += 0.72f;
+                player._veclocity.X += 0.72f;
                 player.direction = "SE";
             }
 
-            if (move != Microsoft.Xna.Framework.Vector2.Zero)
+        
+            //handle frameIndex & collisions
+            if (player._veclocity != Microsoft.Xna.Framework.Vector2.Zero)
             {
-                move.Normalize();
-                player._position += move * player._speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                player._veclocity.Normalize();
+                Microsoft.Xna.Framework.Vector2 desiredMove = player._veclocity * player._speed * (float)gameTime.ElapsedGameTime.TotalSeconds,
+                                                resolved = _map.ResolveCollision(player.Bounds, desiredMove);
+                player._position += resolved;
+
 
                 player._timer += gameTime.ElapsedGameTime.TotalSeconds;
                 if (player._timer > player._interval)
