@@ -14,7 +14,9 @@ public class Game1 : Game
 
     // Player
     private string[] playerSheetPaths = ["character/16x32 Idle", "character/16x32 Walk Cycle", "character/16x32 Run Cycle-Sheet"];
+    private string mapPath = "map/map";
     private Player _player;
+    private TiledMapManager _map;
 
     public Game1()
     {
@@ -37,6 +39,9 @@ public class Game1 : Game
         try
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            _map = new TiledMapManager(Content, GraphicsDevice, mapPath);
+
             _player = new Player(Content, playerSheetPaths, new Vector2(100, 100));
 
         }catch (Exception ex) {
@@ -50,11 +55,14 @@ public class Game1 : Game
             Exit();
         try
         {
+            _map.Update(gameTime);
             _player.Update(gameTime);
             base.Update(gameTime);
 
-        } catch (Exception ex) {
-            Log.Information("Update Error : " + ex.Message +"\t" + ex.Data.ToString());
+        }
+        catch (Exception ex)
+        {
+            Log.Information("Update Error : " + ex.Message + "\t" + ex.Data.ToString());
         }
         // TODO: Add your update logic here
     }
@@ -63,10 +71,12 @@ public class Game1 : Game
     {
         // GraphicsDevice.Clear(Color.CornflowerBlue);
         try
-        { 
+        {
             GraphicsDevice.Clear(Color.White);
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            
+            _map.Draw(gameTime);
             _player.Draw(_spriteBatch);
 
             _spriteBatch.End();

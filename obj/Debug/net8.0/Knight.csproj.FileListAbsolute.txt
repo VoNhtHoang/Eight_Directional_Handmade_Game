@@ -33,21 +33,15 @@ C:\Users\hoang\Code\Handmade_Game\C#(MonoGame)\Knight\obj\Debug\net8.0\refint\Kn
 C:\Users\hoang\Code\Handmade_Game\C#(MonoGame)\Knight\obj\Debug\net8.0\Knight.pdb
 C:\Users\hoang\Code\Handmade_Game\C#(MonoGame)\Knight\obj\Debug\net8.0\Knight.genruntimeconfig.cache
 C:\Users\hoang\Code\Handmade_Game\C#(MonoGame)\Knight\obj\Debug\net8.0\ref\Knight.dll
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.csproj.AssemblyReference.cache
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.AssemblyInfoInputs.cache
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.AssemblyInfo.cs
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.csproj.CoreCompileInputs.cache
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.sourcelink.json
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.dll
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\refint\Knight.dll
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.pdb
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Idle.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Run Cycle-Sheet.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Walk Cycle.xnb
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Knight.exe
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Knight.deps.json
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Knight.runtimeconfig.json
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Knight.dll
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Knight.pdb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\MonoGame.Extended.dll
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\MonoGame.Framework.dll
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\NVorbis.dll
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Serilog.dll
@@ -65,8 +59,22 @@ C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\runtim
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\runtimes\osx\native\libSDL2-2.0.0.dylib
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\runtimes\win-x64\native\SDL2.dll
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.csproj.AssemblyReference.cache
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.AssemblyInfoInputs.cache
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.AssemblyInfo.cs
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.csproj.CoreCompileInputs.cache
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.sourcelink.json
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.csproj.Up2Date
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.dll
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\refint\Knight.dll
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.pdb
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\Knight.genruntimeconfig.cache
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\obj\Debug\net8.0\ref\Knight.dll
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Walk Cycle.xnb
-C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\character\16x32 Run Cycle-Sheet.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\map.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\tile1_0.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\tile1_1.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\tile2_0.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\tile2_1.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\tile3_0.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\tile3_1.xnb
