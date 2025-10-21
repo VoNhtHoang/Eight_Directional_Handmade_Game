@@ -78,3 +78,5 @@ C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Conten
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\tile2_1.xnb
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\tile3_0.xnb
 C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\tile3_1.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\collision_0.xnb
+C:\Users\hoang\Code\Handmade_Game\C_Plus_MonoGame\Knight\bin\Debug\net8.0\Content\map\collision_1.xnb

@@ -56,6 +56,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Serilog;
 
 namespace Knight
 {
@@ -69,6 +70,7 @@ namespace Knight
         private float _followSpeed = 2.9f;
 
         public Matrix Transform => _transform;
+        
         public float Zoom => _zoom;
         public Vector2 Position => _position;
 
@@ -78,6 +80,8 @@ namespace Knight
             _zoom = 2.5f; // zoom
             _rotation = 0f;
             _position = Vector2.Zero;
+
+            Log.Information("Camera.cs  -  ViewPort: Width - " + _graphics.Viewport.Width + "\t Height - " + _graphics.Viewport.Height);
         }
 
         public void Follow(Vector2 target,GameTime gameTime, int mapWidth, int mapHeight)
@@ -90,21 +94,20 @@ namespace Knight
 
             // Tạo ma trận transform
             var viewport = _graphics.Viewport;
-            var viewWidth = viewport.Width;
-            var viewHeight = viewport.Height;
+            float viewWidth = viewport.Width;
+            float viewHeight = viewport.Height;
+
+            // Giữ camera không vượt map
+            float halfWidth = (viewWidth / 2f) / _zoom, halfHeight = (viewHeight / 2f) / _zoom;
+
+            _position.X = MathHelper.Clamp(_position.X, halfWidth, mapWidth - halfWidth);
+            _position.Y = MathHelper.Clamp(_position.Y, halfHeight, mapHeight - halfHeight);
 
             _transform =
                 Matrix.CreateTranslation(new Vector3( -_position.X, -_position.Y - 16, 0)) *
                 Matrix.CreateRotationZ(_rotation) *
                 Matrix.CreateScale(_zoom) *
                 Matrix.CreateTranslation(new Vector3(viewWidth / 2f, viewHeight / 2f, 0));
-
-            // Giữ camera không vượt map
-            var halfWidth = (viewWidth / 2f) / _zoom;
-            var halfHeight = (viewHeight / 2f) / _zoom;
-
-            _position.X = MathHelper.Clamp(_position.X, halfWidth, mapWidth - halfWidth);
-            _position.Y = MathHelper.Clamp(_position.Y, halfHeight, mapHeight - halfHeight);
         }
 
         public void ZoomIn() => _zoom = MathHelper.Min(_zoom + 0.1f, 3f);

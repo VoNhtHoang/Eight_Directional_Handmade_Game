@@ -4,16 +4,35 @@
         "width": 2
     },
     "activeFile": "map.tmx",
+    "automapping.whileDrawing": true,
     "expandedProjectPaths": [
         "."
     ],
     "fileStates": {
+        "collision.tsx": {
+            "scaleInDock": 1
+        },
         "map.tmx": {
+            "expandedObjectLayers": [
+                13
+            ],
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 329,
-                "y": 504
+                "x": 357.5,
+                "y": 216
+            }
+        },
+        "rules1.tmx": {
+            "expandedObjectLayers": [
+                6,
+                10
+            ],
+            "scale": 1.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 244.33333333333331,
+                "y": 204
             }
         },
         "sprite.tsx": {
@@ -21,7 +40,7 @@
             "scaleInEditor": 1
         },
         "tile1.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.5,
             "scaleInEditor": 1
         },
         "tile2.tsx": {
@@ -42,25 +61,27 @@
         }
     },
     "last.imagePath": "C:/Users/hoang/Code/Handmade_Game/C#(MonoGame)/Knight/Content/res",
-    "map.height": 200,
+    "map.height": 50,
     "map.lastUsedFormat": "tmx",
-    "map.renderOrder": "2",
+    "map.renderOrder": "0",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
-    "map.width": 200,
+    "map.width": 50,
     "openFiles": [
         "tile1.tsx",
         "tile2.tsx",
         "map.tmx",
         "tile3.tsx",
         "tile4.tsx",
-        "tile5.tsx"
+        "tile5.tsx",
+        "rules1.tmx"
     ],
     "project": "KnightMap.tiled-project",
     "property.type": "bool",
     "recentFiles": [
         "tile1.tsx",
         "tile2.tsx",
+        "rules1.tmx",
         "tile5.tsx",
         "tile4.tsx",
         "tile3.tsx",

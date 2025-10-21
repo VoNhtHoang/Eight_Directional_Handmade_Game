@@ -138,5 +138,19 @@ namespace Knight
                 // Log.Information("Using Walking State");
             }
         }
+
+        public void Draw(SpriteBatch spriteBatch, float playerDepth)
+        {
+            if (_playerState == State.Idle)
+            {
+                spriteBatch.Draw(_texture[0], _position, playerIdleFrames[direction][_frameIndex], Color.White, rotation: 0f, origin: Microsoft.Xna.Framework.Vector2.Zero, 1f, SpriteEffects.None, layerDepth: playerDepth);
+                // Log.Information("Using Idle Frames");
+            }
+            else if (_playerState == State.Walk)
+            {
+                spriteBatch.Draw(_texture[1], _position, playerWalkFrames[direction][_frameIndex], Color.White, rotation: 0f, origin: Microsoft.Xna.Framework.Vector2.Zero, 1f, SpriteEffects.None, layerDepth: playerDepth);
+                // Log.Information("Using Walking State");
+            }
+        }
     }
 }

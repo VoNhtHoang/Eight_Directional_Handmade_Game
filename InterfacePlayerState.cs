@@ -107,6 +107,7 @@ namespace Knight
                 player._veclocity.Normalize();
                 Microsoft.Xna.Framework.Vector2 desiredMove = player._veclocity * player._speed * (float)gameTime.ElapsedGameTime.TotalSeconds,
                                                 resolved = _map.ResolveCollision(player.Bounds, desiredMove);
+                                                //  resolved = _map.ResolveCollision(player, desiredMove);
                 player._position += resolved;
 
 
