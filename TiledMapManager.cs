@@ -79,27 +79,11 @@ namespace Knight
             LoadCollisionLayer();
         }
 
-        public TiledMapTileLayer _getGroundLayer()
+        public List<TiledMapTileLayer> _getAllTileLayer()
         {
-            return _map.GetLayer<TiledMapTileLayer>("ground");
-        }
-
-        public List<TiledMapTileLayer> getDepthLayers()
-        {
-            List<TiledMapTileLayer> depthLayers = new List<TiledMapTileLayer>();
-            foreach (string layerName in _depthLayers)
-            {
-                if (_map.GetLayer<TiledMapTileLayer>(layerName) == null) continue;
-                depthLayers.Add(_map.GetLayer<TiledMapTileLayer>(layerName));
-            }
-
-            return depthLayers;
-        }
-
-        public TiledMapTileLayer _getCollisionTileLayer()
-        {
-            TiledMapTileLayer layer = _map.GetLayer<TiledMapTileLayer>("collision");
-            return layer;
+            List<TiledMapTileLayer> layers = new();
+            foreach (TiledMapTileLayer layer in _map.TileLayers) layers.Add(layer);
+            return layers;
         }
 
         private void LoadCollisionLayer()
@@ -116,7 +100,9 @@ namespace Knight
                 if (obj is TiledMapObject { IsVisible: true })
                     _collisionRects.Add(new MonoGame.Extended.RectangleF(obj.Position.X, obj.Position.Y, obj.Size.Width, obj.Size.Height));
             }
-            Log.Information("File Tiled Map Manager ---- collision Rects count"+ _collisionRects.Count.ToString());
+
+            Log.Information("File Tiled Map Manager ---- collision Rects count" + _collisionRects.Count.ToString());
+            
         }
 
         public void Update(GameTime gameTime)
@@ -140,14 +126,9 @@ namespace Knight
             else
                 _renderer.Draw();
         }
-
+            
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime, TiledMapTileLayer layer, Matrix? cameraTransform = null)
         {
-            for (int i = 0; i < _collisionRects.Count; i++)
-            {
-                MonoGame.Extended.RectangleF rect = _collisionRects[i];
-                spriteBatch.DrawRectangle(rect, Color.Red * 1f);
-            }
             // Log.Warning("Tiled Map Manager - Draw Rect! \t" + _collisionRects.Count.ToString());
 
             // Zoom & Draw
@@ -155,6 +136,29 @@ namespace Knight
                 _renderer.Draw(layer, cameraTransform.Value);
             else
                 _renderer.Draw(layer);
+
+            // for (int i = 0; i < _collisionRects.Count; i++)
+            // {
+            //     MonoGame.Extended.RectangleF rect = _collisionRects[i];
+            //     spriteBatch.DrawRectangle(rect, Color.Red * 1f);
+            // }
+        }
+
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, TiledMapTileLayer layer, float drawDepth, Matrix? cameraTransform = null)
+        {
+            // Log.Warning("Tiled Map Manager - Draw Rect! \t" + _collisionRects.Count.ToString());
+
+            // Zoom & Draw
+            if (cameraTransform.HasValue)
+                _renderer.Draw(layer, cameraTransform.Value, depth: drawDepth);
+            else
+                _renderer.Draw(layer, depth: drawDepth);
+
+            // for (int i = 0; i < _collisionRects.Count; i++)
+            // {
+            //     MonoGame.Extended.RectangleF rect = _collisionRects[i];
+            //     spriteBatch.DrawRectangle(rect, Color.Red * 1f);
+            // }
         }
         void DrawRectangle(SpriteBatch spriteBatch, MonoGame.Extended.RectangleF rect, Color color)
         {
@@ -189,45 +193,39 @@ namespace Knight
                         velocity.Y = 0;
                     else
                         velocity.X = 0;
-                    // var futureRect = new MonoGame.Extended.RectangleF(playerRect.Position + new Vector2(velocity.X, 0), playerRect.Size);
-                    // if (!futureRect.Intersects(rect)) velocity.X = 0;
-                    // futureRect = new MonoGame.Extended.RectangleF(playerRect.Position + new Vector2(0, velocity.Y), playerRect.Size);
-                    // if (!futureRect.Intersects(rect)) velocity.Y = 0;
                 }
             }
-            Log.Information("Map - Come to ResolveColl");
+            // Log.Information("Map - Come to ResolveColl");
             return velocity;
         }
         
-        public Microsoft.Xna.Framework.Vector2 ResolveCollision(Player player, Microsoft.Xna.Framework.Vector2 velocity)
-        {
-            TiledMapTileLayer layer = this._getCollisionTileLayer();
-            if (layer == null) return velocity;
+        // public Microsoft.Xna.Framework.Vector2 ResolveCollision(Player player, Microsoft.Xna.Framework.Vector2 velocity)
+        // {
+        //     TiledMapTileLayer layer = this._getCollisionTileLayer();
+        //     if (layer == null) return velocity;
 
-            _playerDesiredCorners = new List<Microsoft.Xna.Framework.Vector2>();
-            _playerDesiredCorners.Add(new Microsoft.Xna.Framework.Vector2(player.Bounds.X + velocity.X, player.Position.Y + velocity.Y));
-            _playerDesiredCorners.Add(new Microsoft.Xna.Framework.Vector2(player.Bounds.X + player.Bounds.Width + velocity.X, player.Bounds.Y + velocity.Y));
-            _playerDesiredCorners.Add(new Microsoft.Xna.Framework.Vector2(player.Bounds.X + velocity.X, player.Bounds.Y + velocity.Y + player.Bounds.Height));
-            _playerDesiredCorners.Add(new Microsoft.Xna.Framework.Vector2(player.Bounds.X + player.Bounds.Width + velocity.X, player.Bounds.Y + velocity.Y + player.Bounds.Height));
+        //     _playerDesiredCorners = new List<Microsoft.Xna.Framework.Vector2>();
+        //     _playerDesiredCorners.Add(new Microsoft.Xna.Framework.Vector2(player.Bounds.X + velocity.X, player.Position.Y + velocity.Y));
+        //     _playerDesiredCorners.Add(new Microsoft.Xna.Framework.Vector2(player.Bounds.X + player.Bounds.Width + velocity.X, player.Bounds.Y + velocity.Y));
+        //     _playerDesiredCorners.Add(new Microsoft.Xna.Framework.Vector2(player.Bounds.X + velocity.X, player.Bounds.Y + velocity.Y + player.Bounds.Height));
+        //     _playerDesiredCorners.Add(new Microsoft.Xna.Framework.Vector2(player.Bounds.X + player.Bounds.Width + velocity.X, player.Bounds.Y + velocity.Y + player.Bounds.Height));
 
-            foreach (var c in _playerDesiredCorners)
-            {
-                ushort x = (ushort)(c.X / _map.TileWidth);
-                ushort y = (ushort)(c.Y / _map.TileHeight);
+        //     foreach (var c in _playerDesiredCorners)
+        //     {
+        //         ushort x = (ushort)(c.X / _map.TileWidth);
+        //         ushort y = (ushort)(c.Y / _map.TileHeight);
 
-                if (layer.TryGetTile(x, y, out var tile))
-                {
-                    var tmp = layer.GetTile(x, y);
-                    if (tmp.GlobalIdentifier != 0) return velocity;
-                }
-            }
+        //         if (layer.TryGetTile(x, y, out var tile))
+        //         {
+        //             var tmp = layer.GetTile(x, y);
+        //             if (tmp.GlobalIdentifier != 0) return velocity;
+        //         }
+        //     }
 
-            // Log.Information("Collision - Why it came here!");
-            velocity.X = 0;
-            velocity.Y = 0;
-            return velocity;
-        }
+        //     // Log.Information("Collision - Why it came here!");
+        //     velocity.X = 0;
+        //     velocity.Y = 0;
+        //     return velocity;
+        // }
     }
 }
-
-

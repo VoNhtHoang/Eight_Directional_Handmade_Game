@@ -5,11 +5,14 @@ using Microsoft.Xna.Framework.Input;
 // using System;
 using System;
 using System.Collections.Generic;
-using System.Data;
+// using System.Data;
+
 using Serilog;
+
 using System.IO;
-using System.Numerics;
-using System.Dynamic;
+// using System.Numerics;
+// using System.Dynamic;
+// using System.Drawing;
 // using System.Collections.Specialized;
 // using System.ComponentModel;
 // using System.Reflection.PortableExecutable;
@@ -18,11 +21,11 @@ namespace Knight
 {
     public class Player
     {
-        private List<Texture2D> _texture;
+        public List<Texture2D> _texture { get; private set; }
         public string direction = "S";
         private string[] directions = ["S", "SW", "SE", "W", "E", "NW", "NE", "N"];
 
-        private Dictionary<string, Rectangle[]> playerIdleFrames, playerWalkFrames, playerRunFrames;
+        private Dictionary<string, Microsoft.Xna.Framework.Rectangle[]> playerIdleFrames, playerWalkFrames, playerRunFrames;
         private InterfacePlayerState _state;
 
         // private bool moving = false, idle = true, walk =false;
@@ -34,6 +37,7 @@ namespace Knight
         }
 
         public State _playerState;
+
         public float _speed { get; private set;}
         private int _frameWidth = 16;
         private int _frameHeight = 32;
@@ -58,9 +62,9 @@ namespace Knight
                 this._position = _position;
 
                 // Init
-                playerIdleFrames = new Dictionary<string, Rectangle[]>();
-                playerRunFrames = new Dictionary<string, Rectangle[]>();
-                playerWalkFrames = new Dictionary<string, Rectangle[]>();
+                playerIdleFrames = new Dictionary<string, Microsoft.Xna.Framework.Rectangle[]>();
+                playerRunFrames = new Dictionary<string, Microsoft.Xna.Framework.Rectangle[]>();
+                playerWalkFrames = new Dictionary<string, Microsoft.Xna.Framework.Rectangle[]>();
 
                 InitFrames();
 
@@ -89,8 +93,8 @@ namespace Knight
             int frameNums = (int)(_texture[0].Width / _frameWidth), frameDirections = (int)(_texture[0].Height / _frameHeight);
             for (int i = 0; i < frameDirections; i++)
             {
-                Rectangle[] tmpRects = new Rectangle[4];
-                for (int j = 0; j < frameNums; j++) tmpRects[j] = new Rectangle(j * _frameWidth, _frameHeight * i, _frameWidth, _frameHeight);
+                Microsoft.Xna.Framework.Rectangle[] tmpRects = new Microsoft.Xna.Framework.Rectangle[4];
+                for (int j = 0; j < frameNums; j++) tmpRects[j] = new Microsoft.Xna.Framework.Rectangle(j * _frameWidth, _frameHeight * i, _frameWidth, _frameHeight);
 
                 playerIdleFrames.Add(directions[i], tmpRects);
             }
@@ -103,8 +107,8 @@ namespace Knight
             frameDirections = (int)(_texture[1].Height / _frameHeight);
             for (int i = 0; i < frameDirections; i++)
             {
-                Rectangle[] tmpRects = new Rectangle[4];
-                for (int j = 0; j < frameNums; j++) tmpRects[j] = new Rectangle(j * _frameWidth, _frameHeight * i, _frameWidth, _frameHeight);
+                Microsoft.Xna.Framework.Rectangle[] tmpRects = new Microsoft.Xna.Framework.Rectangle[4];
+                for (int j = 0; j < frameNums; j++) tmpRects[j] = new Microsoft.Xna.Framework.Rectangle(j * _frameWidth, _frameHeight * i, _frameWidth, _frameHeight);
 
                 playerWalkFrames.Add(directions[i], tmpRects);
             }
@@ -141,16 +145,43 @@ namespace Knight
 
         public void Draw(SpriteBatch spriteBatch, float playerDepth)
         {
-            if (_playerState == State.Idle)
-            {
-                spriteBatch.Draw(_texture[0], _position, playerIdleFrames[direction][_frameIndex], Color.White, rotation: 0f, origin: Microsoft.Xna.Framework.Vector2.Zero, 1f, SpriteEffects.None, layerDepth: playerDepth);
-                // Log.Information("Using Idle Frames");
-            }
-            else if (_playerState == State.Walk)
-            {
-                spriteBatch.Draw(_texture[1], _position, playerWalkFrames[direction][_frameIndex], Color.White, rotation: 0f, origin: Microsoft.Xna.Framework.Vector2.Zero, 1f, SpriteEffects.None, layerDepth: playerDepth);
-                // Log.Information("Using Walking State");
-            }
+            Texture2D tex = _playerState == State.Walk ? _texture[1] : _texture[0];
+            Rectangle src = _playerState == State.Walk ? playerWalkFrames[direction][_frameIndex]
+                                               : playerIdleFrames[direction][_frameIndex];
+
+            Vector2 origin = new(src.Width / 2f, src.Height / 2f);
+            spriteBatch.Draw(
+                tex,
+                _position,
+                sourceRectangle: src,
+                Color.White,
+                rotation: 0f,            // hoặc MathHelper.ToRadians(90f)
+                origin: Vector2.Zero,
+                1.0f,                    // scale an toàn
+                SpriteEffects.None,
+                layerDepth: playerDepth
+            );
+
+            // Log.Information($"SortMode={SpriteSortMode.FrontToBack}, Depth={playerDepth}");
+            // if (_playerState == State.Idle)
+            // {
+            //     Microsoft.Xna.Framework.Rectangle rect = playerIdleFrames[direction][_frameIndex];
+
+            //     Microsoft.Xna.Framework.Vector2 origin = new Microsoft.Xna.Framework.Vector2(rect.Width / 2f, rect.Height / 2f);
+
+            //     spriteBatch.Draw(_texture[0], _position, rect, Color.White, rotation: MathHelper.ToRadians(0), origin, 1.0f, SpriteEffects.None, playerDepth);
+            //     // Log.Information("Using Idle Frames");
+            // }
+            // else if (_playerState == State.Walk)
+            // {
+            //     Microsoft.Xna.Framework.Rectangle rect = playerWalkFrames[direction][_frameIndex];
+
+            //     Microsoft.Xna.Framework.Vector2 origin = new Microsoft.Xna.Framework.Vector2(rect.Width / 2f, rect.Height / 2f);
+
+            //     spriteBatch.Draw(_texture[1], _position, rect, Color.White, rotation: MathHelper.ToRadians(0), origin, 1.0f, SpriteEffects.None, playerDepth);
+            //     // Log.Information("Using Walking State");
+            // }
+
         }
     }
 }

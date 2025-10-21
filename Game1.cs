@@ -13,6 +13,7 @@ using Serilog;
 
 //
 using System.Linq;
+using MonoGame.Extended.Collisions.Layers;
 
 
 namespace Knight;
@@ -28,6 +29,7 @@ public class Game1 : Game
     private Player _player;
     private TiledMapManager _map;
 
+    private List<TiledMapTileLayer> _map_layers;
     // private TiledMapTileLayer _groundLayer;
     // private List<TiledMapTileLayer> _depthLayers;
     // private List<(float y, Action<TiledMapTileset> draw)> _drawList; //<GameTime, Matrix>
@@ -63,6 +65,10 @@ public class Game1 : Game
 
             _map = new TiledMapManager(Content, GraphicsDevice, mapPath);
 
+            _map_layers = new();
+            _map_layers = _map._getAllTileLayer();
+            _map_layers = _map_layers.OrderBy(layer => Convert.ToSingle(layer.Properties["drawDepth"])).ToList();
+
             // Y Sorting
             // _groundLayer = _map._getGroundLayer();
             // _depthLayers = _map.getDepthLayers();
@@ -85,7 +91,7 @@ public class Game1 : Game
         try
         {
             _map.Update(gameTime);
-            
+
             _player.Update(gameTime, _map);
 
             _camera.Follow(_player.Bounds.Center, gameTime, _map._mapWidth, _map._mapHeight);
@@ -103,20 +109,45 @@ public class Game1 : Game
         // GraphicsDevice.Clear(Color.CornflowerBlue);
         try
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.Black);
 
-            // _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            // Zoom + Draw
-            _spriteBatch.Begin(SpriteSortMode.BackToFront, transformMatrix: _camera.Transform, samplerState: SamplerState.PointClamp);
+            _spriteBatch.Begin(
+                SpriteSortMode.FrontToBack,       // hoặc FrontToBack lớn hơn sẽ vẽ sau
+                BlendState.AlphaBlend,
+                SamplerState.PointClamp,
+                // DepthStencilState.None,   // DepthStencilState.Default, nếu có dùng GPU để buffer test
+                // RasterizerState.CullNone,
+                // null,
+                transformMatrix: _camera.Transform
+            );
 
-            // _map.Draw(_spriteBatch, gameTime, _camera.Transform);
-            _map.Draw(_spriteBatch, gameTime, _camera.Transform);
+            foreach (TiledMapTileLayer layer in _map_layers)
+                if (Convert.ToSingle(layer.Properties["drawDepth"]) < 0.3f)
+                    _map.Draw(_spriteBatch, gameTime, layer, _camera.Transform);
 
-            _player.Draw(_spriteBatch);
+            _player.Draw(_spriteBatch, 0.3f);
+
+            foreach (TiledMapTileLayer layer in _map_layers)
+                if (Convert.ToSingle(layer.Properties["drawDepth"]) > 0.3f)
+                {
+                    Log.Information("Game1 File - " + layer.Name.ToString() + "\t Depth: " + Convert.ToSingle(layer.Properties["drawDepth"]));
+                    _map.Draw(_spriteBatch, gameTime, layer, _camera.Transform);
+                }
+
+            // GraphicsDevice.DepthStencilState = DepthStencilState.None;    
 
             _spriteBatch.End();
-
             base.Draw(gameTime);
+
+            // GraphicsDevice.Clear(Color.Black);
+
+            // _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone);
+
+            // Rectangle src = new Rectangle(0, 0, 16, 32);
+            // Vector2 origin = new(src.Width / 2f, src.Height / 2f);
+            // _spriteBatch.Draw(_player._texture[0], new Vector2(400, 300), src, Color.White, 0f, origin, 2f, SpriteEffects.None, 0.5f);
+
+            // _spriteBatch.End();
         }
         catch (Exception ex)
         {
