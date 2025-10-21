@@ -102,7 +102,7 @@ namespace Knight
             }
 
             Log.Information("File Tiled Map Manager ---- collision Rects count" + _collisionRects.Count.ToString());
-            
+
         }
 
         public void Update(GameTime gameTime)
@@ -126,7 +126,7 @@ namespace Knight
             else
                 _renderer.Draw();
         }
-            
+
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime, TiledMapTileLayer layer, Matrix? cameraTransform = null)
         {
             // Log.Warning("Tiled Map Manager - Draw Rect! \t" + _collisionRects.Count.ToString());

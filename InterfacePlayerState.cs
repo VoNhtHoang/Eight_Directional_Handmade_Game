@@ -14,7 +14,7 @@ namespace Knight
     public interface InterfacePlayerState
     {
         void Enter(Player player);
-        void Update(Player player, GameTime gameTime, TiledMapManager _map);
+        void Update(Player player, GameTime gameTime, ManualTileMap _map); // TiledMapManager
         void Exit(Player player);
     }
 
@@ -34,7 +34,7 @@ namespace Knight
             return false;
         }
 
-        public void Update(Player player, GameTime gameTime, TiledMapManager _map)
+        public void Update(Player player, GameTime gameTime, ManualTileMap _map)
         {
             KeyboardState ks = Keyboard.GetState();
 
@@ -61,7 +61,7 @@ namespace Knight
             player._playerState = Player.State.Walk;
             player._interval = 0.2f;  
         }
-        public void Update(Player player, GameTime gameTime, TiledMapManager _map)
+        public void Update(Player player, GameTime gameTime, ManualTileMap _map)
         {
             KeyboardState ks = Keyboard.GetState();
             if (ks.GetPressedKeyCount() < 1)

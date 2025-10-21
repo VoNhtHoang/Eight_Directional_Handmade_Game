@@ -124,7 +124,7 @@ namespace Knight
             _state.Enter(this);
         }
         
-        public void Update(GameTime gameTime, TiledMapManager _map)
+        public void Update(GameTime gameTime, ManualTileMap _map) //TiledMapManager
         {
             _state.Update(this, gameTime, _map);
         }

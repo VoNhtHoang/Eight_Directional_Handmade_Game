@@ -20,8 +20,8 @@
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 357.5,
-                "y": 216
+                "x": 378.5,
+                "y": 219
             }
         },
         "rules1.tmx": {
@@ -30,7 +30,7 @@
                 10
             ],
             "scale": 1.5,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 244.33333333333331,
                 "y": 204
