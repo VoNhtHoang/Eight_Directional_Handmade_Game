@@ -45,6 +45,10 @@ namespace Knight
         public double _timer = 0;
         public double _interval = 0.15f;
 
+        /*############# Draw Depth ############### */
+        public float _drawDepth = 0.0f;
+
+
         // pos & veclo & collision
         public Microsoft.Xna.Framework.Vector2 _position;
         public Microsoft.Xna.Framework.Vector2 Position => _position;
@@ -123,24 +127,48 @@ namespace Knight
             
             _state.Enter(this);
         }
-        
+
         public void Update(GameTime gameTime, ManualTileMap _map) //TiledMapManager
         {
             _state.Update(this, gameTime, _map);
+            this._drawDepth = MathHelper.Clamp(
+                (Bounds.Bottom) / (float)(_map._map.Height * _map._map.TileHeight) ,
+                0f, 1f
+            );
         }
+
+        // public void Draw(SpriteBatch spriteBatch)
+        // {
+        //     if (_playerState == State.Idle)
+        //     {
+        //         spriteBatch.Draw(_texture[0], _position, playerIdleFrames[direction][_frameIndex], Color.White);
+        //         // Log.Information("Using Idle Frames");
+        //     }
+        //     else if (_playerState == State.Walk)
+        //     {
+        //         spriteBatch.Draw(_texture[1], _position, playerWalkFrames[direction][_frameIndex], Color.White);
+        //         // Log.Information("Using Walking State");
+        //     }
+        // }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (_playerState == State.Idle)
-            {
-                spriteBatch.Draw(_texture[0], _position, playerIdleFrames[direction][_frameIndex], Color.White);
-                // Log.Information("Using Idle Frames");
-            }
-            else if (_playerState == State.Walk)
-            {
-                spriteBatch.Draw(_texture[1], _position, playerWalkFrames[direction][_frameIndex], Color.White);
-                // Log.Information("Using Walking State");
-            }
+            Texture2D tex = _playerState == State.Walk ? _texture[1] : _texture[0];
+            Rectangle src = _playerState == State.Walk ? playerWalkFrames[direction][_frameIndex]
+                                               : playerIdleFrames[direction][_frameIndex];
+
+            Vector2 origin = new(src.Width / 2f, src.Height / 2f);
+            spriteBatch.Draw(
+                tex,
+                _position,
+                sourceRectangle: src,
+                Color.White,
+                rotation: 0f,            // hoặc MathHelper.ToRadians(90f)
+                origin: Vector2.Zero,
+                1.0f,                    // scale an toàn
+                SpriteEffects.None,
+                layerDepth: this._drawDepth
+            );
         }
 
         public void Draw(SpriteBatch spriteBatch, float playerDepth)

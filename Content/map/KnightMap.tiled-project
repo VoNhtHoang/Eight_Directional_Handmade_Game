@@ -1,8 +1,8 @@
 {
-    "automappingRulesFile": "",
+    "automappingRulesFile": "rules.txt",
     "commands": [
     ],
-    "compatibilityVersion": 1100,
+    "compatibilityVersion": 1090,
     "extensionsPath": "extensions",
     "folders": [
         "."

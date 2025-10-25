@@ -9,6 +9,9 @@
         "."
     ],
     "fileStates": {
+        ":/automap-tiles.tsx": {
+            "scaleInDock": 1
+        },
         "collision.tsx": {
             "scaleInDock": 1
         },
@@ -17,11 +20,11 @@
                 13,
                 7
             ],
-            "scale": 1,
-            "selectedLayer": 2,
+            "scale": 1.5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 378.5,
-                "y": 219
+                "x": 259,
+                "y": 265.33333333333326
             }
         },
         "rules1.tmx": {
@@ -32,8 +35,8 @@
             "scale": 1.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 244.33333333333331,
-                "y": 204
+                "x": 191.66666666666669,
+                "y": 210
             }
         },
         "sprite.tsx": {
@@ -41,11 +44,11 @@
             "scaleInEditor": 1
         },
         "tile1.tsx": {
-            "scaleInDock": 0.5,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "tile2.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.5,
             "scaleInEditor": 1
         },
         "tile3.tsx": {
@@ -71,10 +74,10 @@
     "openFiles": [
         "tile1.tsx",
         "tile2.tsx",
-        "map.tmx",
         "tile3.tsx",
         "tile4.tsx",
         "tile5.tsx",
+        "map.tmx",
         "rules1.tmx"
     ],
     "project": "KnightMap.tiled-project",
@@ -82,10 +85,10 @@
     "recentFiles": [
         "tile1.tsx",
         "tile2.tsx",
-        "rules1.tmx",
-        "tile5.tsx",
-        "tile4.tsx",
         "tile3.tsx",
+        "tile4.tsx",
+        "tile5.tsx",
+        "rules1.tmx",
         "map.tmx",
         "sprite.tsx"
     ],
